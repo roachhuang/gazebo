@@ -1,5 +1,4 @@
 <launch>
-
   <!-- Load joint controller configurations from YAML file to parameter server -->
   <rosparam file="$(find mybot_control)/config/mybot_control.yaml" command="load"/>
 
@@ -9,12 +8,15 @@
 					  rightWheel_effort_controller
 					  leftWheel_effort_controller"/>
 
-
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
 	respawn="false" output="screen">
-    <param name="robot_description" command="$(find xacro)/xacro.py '$(find mybot_description)/urdf/mybot.xacro'" />
+    <param name="robot_description" command="$(find xacro)/xacro '$(find mybot_description)/urdf/mybot.xacro'" />
     <remap from="/joint_states" to="/mybot/joint_states" />
   </node>
 
+  <!-- copy below to terminal to control the robot in gazebo and rviz (set fixed frame as odomo -->
+  <!--
+  rosrun turtlebot_teleop turtlebot_teleop_key /turtlebot_teleop/cmd_vel:=/mybot/cmd_vel
+  -->
 </launch>
