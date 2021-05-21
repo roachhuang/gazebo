@@ -19,7 +19,9 @@
    (currently in development and awaiting feedback)
 -->
   
-  <xacro:property name="gazebo" value="false" />
+  <xacro:property name="gazebo" value="true" />
+
+  <xacro:property name="hokuyo_size" value="0.03" /> 
 
   <xacro:property name="cam_px" value="-0.087" />
   <xacro:property name="cam_py" value="-0.0125" />

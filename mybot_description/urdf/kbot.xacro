@@ -71,6 +71,21 @@
 
   <xacro:wheel prefix="left" reflect="1" />
   <xacro:wheel prefix="right" reflect="-1" />
+
+  <link name="laser_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="${hokuyo_size}" length="0.04" />        
+      </geometry>
+      <material name="blue" />
+    </visual>
+  </link>
+  <joint name="hokuyo_joint" type="fixed">
+    <origin xyz="0 0 ${base_height+hokuyo_size/4}" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="laser_link" />
+  </joint>
   <!-- 
     <link name="camera">
       <collision>
